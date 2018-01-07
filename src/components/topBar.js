@@ -21,7 +21,7 @@ class TopBar extends Component{
     render(){
         return(
             <AppBar
-            title="Title"
+            title="Book Store CMS"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             onLeftIconButtonClick={this.toggleButtonClicked.bind(this)}
           />

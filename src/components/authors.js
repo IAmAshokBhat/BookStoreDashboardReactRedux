@@ -3,14 +3,57 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper/Paper';
-import { fetchAllAuthors } from '../actions'
+import { fetchAllAuthors, deleteAuthor, updateAuthor, addAuthor, toggleMenu } from '../actions'
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import DeleteIcon from 'material-ui/svg-icons/navigation/close';
+import SaveIcon from 'material-ui/svg-icons/content/save';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import TextField from 'material-ui/TextField';
+import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+import InputComponent from './inputComponent';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import TopBar from './topBar';
+import LeftDrawer from './leftDrawer';
+import Footer from './footer';
 
 const style = {
-    margin: 20,
-    textAlign: 'center',
-    display: 'inline-block',
-    padding:20
+  
+    paperStyle:{
+      margin: 20,
+      textAlign: 'center',
+      display: 'inline-block',
+      padding:'20px 40px 20px 20px',
+      position: 'relative'
+    },
+    closeIcon: {
+      width: 20,
+      height: 20,
+    },
+    closeIconStyle: {
+      width: 20,
+      height: 20,
+      padding: 0,
+      position:'absolute',
+      top:15,
+      right:5
+    },
+    saveIcon: {
+        width: 20,
+        height: 20,
+      },
+      saveIconStyle: {
+        width: 32,
+        height: 32, 
+        verticalAlign: 'middle'
+      },
+      addIcon:{
+        position: 'fixed',
+        bottom:50,
+        right:100
+
+      }
   };
   const loaderStyle = {
     container: {
@@ -22,17 +65,55 @@ const style = {
     },
   };
 class Authors extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            openSnackBar:false,
+            message:'',
+            autoHideDuration:4000
+        }
+    }
     componentDidMount(){
         this.props.fetchAllAuthors();
+        if(this.props.uiChanges.open){            
+            this.props.toggleMenu();
+        }
     }
+
+    deleteAuthor(id){        
+        this.props.deleteAuthor(id,()=>{           
+            this.setState({openSnackBar:true,message:'Deleted Successfully!'});
+            this.props.fetchAllAuthors();
+        });
+    }
+    updateAuthor(id, name){        
+         this.props.updateAuthor({'author_id':id, 'author_name':name},()=>{           
+            this.setState({openSnackBar:true,message:'Update Successfully!'});
+            this.props.fetchAllAuthors();
+        });
+    }
+    addAuthor(){
+       this.props.addAuthor() 
+    }
+    closeSnackBar(){               
+        this.setState({openSnackBar:false});
+    }
+
     renderAuthors(){
         return _.map(this.props.authors, author =>{
             return (
                 <MuiThemeProvider key={author.author_id}>
-                    <Paper style={style} zDepth={2}>
-                        <h4>{author.author_name}</h4>
+                    <Paper style={style.paperStyle} zDepth={4}>
+                        <IconButton   iconStyle={style.closeIcon} style={style.closeIconStyle}
+                        tooltip="Delete Author"
+                        tooltipPosition="top-right"
+                        onClick={this.deleteAuthor.bind(this,author.author_id)}>
+                        <DeleteIcon/>
+                        </IconButton>
+                        <InputComponent   id={author.author_id} name={author.author_name} update={this.updateAuthor.bind(this)} />    
                     </Paper>
                 </MuiThemeProvider>
+                
             )
         })      
     }
@@ -40,10 +121,26 @@ class Authors extends Component{
     render(){
         if(this.props.authors){           
             return(
-                <div>
-                    <h1>Authors</h1>
-                    {this.renderAuthors()}
-                </div>
+                    <MuiThemeProvider>
+                        <div>
+                            <TopBar/>
+                            <LeftDrawer/>
+                            <h1>Authors</h1>
+                            {this.renderAuthors()}
+                            <Snackbar
+                            open={this.state.openSnackBar}
+                            message={this.state.message}                
+                            autoHideDuration={this.state.autoHideDuration}               
+                            onRequestClose={this.handleRequestClose}
+                            onActionClick={this.closeSnackBar.bind(this)}
+                            action="close"/>
+                            <FloatingActionButton style={style.addIcon}>
+                                <ContentAdd onClick={this.addAuthor.bind(this)}/>
+                            </FloatingActionButton>
+
+                            <Footer />   
+                        </div>
+                    </MuiThemeProvider>             
             )
         }else{
            return(<div style={{
@@ -63,7 +160,7 @@ class Authors extends Component{
 }
 
 function mapStateToProps(state){
-    return { authors:state.authors }
+    return { authors:state.authors, uiChanges:state.uiChanges }
 }
 
-export default connect (mapStateToProps,{ fetchAllAuthors })(Authors);
+export default connect (mapStateToProps,{ fetchAllAuthors, deleteAuthor, updateAuthor, addAuthor, toggleMenu })(Authors);

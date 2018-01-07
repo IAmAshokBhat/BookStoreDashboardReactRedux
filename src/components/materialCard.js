@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 const styles = {
     block: {
       maxWidth: 250,
+      paddingBottom:20
     },
     checkbox: {
       marginBottom: 16,
@@ -50,26 +51,30 @@ class MaterialCard extends Component {
                 <CardMedia>
                 <Link to={`/book/${book_id}`}><img src={thumb_url} alt="" className="img-responsive" /></Link>
                 </CardMedia>
-                <CardTitle title={book_name} subtitle={`Rs.${price}`} titleStyle={{'fontSize': '15px'}}/>
-               
+                <CardTitle title={book_name} titleStyle={{'fontSize': '15px'}} style={{'padding':'10px 15px 0'}}/>
+                    <div className="pos-rel">    
+                     <div className="disp-inline price">
+                      {`Rs.${price}`}
+                    </div>
                     <div className="disp-inline fav-icon">
-                        <Checkbox
+                    <IconButton><Checkbox
                             checkedIcon={<ActionFavorite />}
                             uncheckedIcon={<ActionFavoriteBorder />}
                             style={styles.checkbox}/>
+                            </IconButton>
                     </div>
-                    <div className="disp-inline">
+                    {/* <div className="disp-inline">
                         <IconButton aria-label="Share">
                         <ShareIcon />
                         </IconButton>
-                    </div>
+                    </div> */}
               
                     <div className="disp-inline info">
                         <IconButton aria-label="expand" onClick={this.toggle.bind(this)}>
                         <InfoIcon />
                         </IconButton>
                     </div>
-                
+                   </div> 
                 <CardText className={(this.state.toggle?'show':'hide')}>
                   {description}
                 </CardText>

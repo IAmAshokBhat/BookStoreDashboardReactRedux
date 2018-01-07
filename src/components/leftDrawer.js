@@ -19,7 +19,8 @@ toggleButtonClicked(){
   render() {
     return (
       <div>
-        <Drawer  
+        <Drawer 
+        className="drawer-wrap"
           docked={false}
           width={200}
           open={this.props.toggleFlag.open}

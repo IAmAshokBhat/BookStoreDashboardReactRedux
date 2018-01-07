@@ -64,11 +64,17 @@ nav.navbar-default{
 }
 .fav-icon{
     text-align: center;
-    padding-top: 12px;
+    position: absolute;
+    right: 60px;
+    top: 0;
+    line-height: 1;
+    
 }
 .info{
     position: absolute;
     right: 20px;
+    top: 0;
+    line-height: 1;
 }
 .pdr-0{
     padding-right: 0!important;
@@ -77,10 +83,55 @@ nav.navbar-default{
     max-height: 396px;
     
 }
-.wrapper-form{
-    padding: 25px;
+.wrapper-form form{
+    padding: 0 0 0 25px;
 }
 
 .wrapper-form .btn-danger{
     margin-left: 10px;
+}
+
+.card-wrapper{
+    padding: 15px;
+    float: left;
+}
+.bd-top{
+    border-top: 1px solid rgba(0,0,0,0.12);
+}
+.price{
+    font-size: 16px;
+    color: inherit;
+    padding: 0 0 0 15px;
+    line-height: 1;
+}
+
+.fav-icon button,.info button{
+    width:20px !important;
+    height:20px !important;
+    padding-top: 0 !important;
+
+}
+.pos-rel{
+    position: relative
+}
+.padd-btm{
+    padding-bottom: 20px;
+}
+.drawer-wrap > div{
+    top:64px !important;
+
+}
+
+h1{
+    padding-left: 20px;
+}
+.add-book svg{
+    display: inline-block !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    height: 56px !important;
+    width: 24px !important;
+    user-select: none !important;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms !important;
+    line-height: 56px !important;
 }
