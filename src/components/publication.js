@@ -14,35 +14,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import TopBar from './topBar';
 import LeftDrawer from './leftDrawer';
 import Footer from './footer';
+import { style } from '../commonStyles';
 
-const style = {
-  
-  paperStyle:{
-    margin: 20,
-    textAlign: 'center',
-    display: 'inline-block',
-    padding:'20px 40px 20px 20px',
-    position: 'relative'
-  },
-  closeIcon: {
-    width: 20,
-    height: 20,
-  },
-  closeIconStyle: {
-    width: 20,
-    height: 20,
-    padding: 0,
-    position:'absolute',
-    top:15,
-    right:5
-  },
-  addIcon:{
-    position: 'fixed',
-    bottom:50,
-    right:100
-
-  }
-};
 
 class Publications extends Component{
     constructor(props){

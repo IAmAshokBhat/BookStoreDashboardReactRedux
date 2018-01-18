@@ -60,7 +60,7 @@ export function fetchCategories(){
 
 
 export function fetchAllAuthors(){   
-    const request = axios.get(`${ROOT_URL}/authors`)
+    const request = axios.get(`${ROOT_URL}/authors`);
     return{
         type: FETCH_ALL_AUTHORS,
         payload: request
@@ -69,12 +69,8 @@ export function fetchAllAuthors(){
 }
 
 export function createBook(values, callback){
-    //api requires array of books, so creating array and then sending
-    const books = new Array();
-    console.log(values.yop)
-    values.yop = "2017";
-    books.push(values);
-    const request = axios.post(`${ROOT_URL}/book`, books).then(()=> callback() );
+
+    const request = axios.post(`${ROOT_URL}/book`, values).then(()=> callback() );
     return {
         type: CREATE_BOOK,
         payload:request
@@ -107,8 +103,18 @@ export function updateBook(values, callback){
     thumb_url: values.thumb_url
    }
    updatedBook.yop = "2017"; 
-    console.log(updatedBook)
-    const request = axios.put(`${ROOT_URL}/book`, updatedBook).then(()=> callback() );
+   var body = new FormData();
+   Object.keys(updatedBook).forEach(( key ) => {               
+       if(key=='thumb_url'){                 
+           body.append(key, values[ key ][0]);
+       }else{
+           body.append(key, values[ key ]);
+       }
+   
+   });
+   console.info('POST', body);
+ 
+    const request = axios.put(`${ROOT_URL}/book`, body).then(()=> callback() );
     return {
         type: UPDATE_BOOK,
         payload:request

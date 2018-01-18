@@ -10,60 +10,16 @@ import SaveIcon from 'material-ui/svg-icons/content/save';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
-import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+import { red500, yellow500, blue500} from 'material-ui/styles/colors';
 import InputComponent from './inputComponent';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import TopBar from './topBar';
 import LeftDrawer from './leftDrawer';
 import Footer from './footer';
+import { style, loaderStyle } from '../commonStyles';
 
-const style = {
-  
-    paperStyle:{
-      margin: 20,
-      textAlign: 'center',
-      display: 'inline-block',
-      padding:'20px 40px 20px 20px',
-      position: 'relative'
-    },
-    closeIcon: {
-      width: 20,
-      height: 20,
-    },
-    closeIconStyle: {
-      width: 20,
-      height: 20,
-      padding: 0,
-      position:'absolute',
-      top:15,
-      right:5
-    },
-    saveIcon: {
-        width: 20,
-        height: 20,
-      },
-      saveIconStyle: {
-        width: 32,
-        height: 32, 
-        verticalAlign: 'middle'
-      },
-      addIcon:{
-        position: 'fixed',
-        bottom:50,
-        right:100
-
-      }
-  };
-  const loaderStyle = {
-    container: {
-      position: 'relative',
-    },
-    refresh: {
-      display: 'inline-block',
-      position: 'relative',
-    },
-  };
+ 
 class Authors extends Component{
     constructor(props){
         super(props);

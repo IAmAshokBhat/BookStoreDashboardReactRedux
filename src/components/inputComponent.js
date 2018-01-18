@@ -4,18 +4,8 @@ import TextField from 'material-ui/TextField';
 import {red500, yellow500, blue500} from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SaveIcon from 'material-ui/svg-icons/content/save';
+import { style } from '../commonStyles';
 
-const style = {  
-   saveIcon: {
-        width: 20,
-        height: 20,
-      },
-      saveIconStyle: {
-        width: 32,
-        height: 32, 
-        verticalAlign: 'middle'
-      }
-};
 
 export default class InputField extends Component{
     
@@ -24,15 +14,17 @@ export default class InputField extends Component{
         super(props);
         this.state = {
             inputValue: name,
-            errorText:''
+            errorText:'',
+            valueUpdated:true
         }
     }
 
     handleValueChange(e){
+
         // if(e.target.value.length == 0){
         //     this.setState({errorText:'Value cannot be null'}); 
         // }else{
-            this.setState({inputValue:e.target.value});        
+            this.setState({inputValue:e.target.value,valueUpdated:false});        
         // }
         
     }
@@ -57,10 +49,14 @@ export default class InputField extends Component{
                     onChange={this.handleValueChange.bind(this)}
                     errorText={this.state.errorText}/>  
                 </MuiThemeProvider>                      
-                <SaveIcon  
+                <IconButton
+                    disabled={this.state.valueUpdated}
+                    style={style.saveIconStyle}
+                    onClick={this.saveNewValue.bind(this)}>
+                <SaveIcon
                 hoverColor={blue500} 
-                style={style.saveIconStyle}
-                onClick={this.saveNewValue.bind(this)}/>    
+                style={style.saveIcon}/>
+                </IconButton> 
             </div>    
         )
 
