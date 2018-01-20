@@ -12,10 +12,14 @@ import { toggleMenu } from '../actions';
 class TopBar extends Component{
     constructor(props){
         super(props);
+        this.titleClick = this.titleClick.bind(this);
     }
     toggleButtonClicked(){
         console.log(this.props)
         this.props.toggleMenu();
+    }
+    titleClick(){
+        this.props.history.push("/");
     }
 
     render(){
@@ -24,6 +28,8 @@ class TopBar extends Component{
             title="Book Store CMS"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             onLeftIconButtonClick={this.toggleButtonClicked.bind(this)}
+            onTitleClick={this.titleClick}
+            titleStyle={{cursor:'pointer'}}
           />
         )
        

@@ -15,7 +15,7 @@ export default class App extends Component {
 
         <MuiThemeProvider>
           <div>
-            <TopBar/>
+            <TopBar history={this.props.history}/>
             <LeftDrawer/>
             <MainLayout/>
            <Footer />   

@@ -189,7 +189,7 @@ class CardDetails extends Component{
             return(
                 <MuiThemeProvider>
                 <div className="wrapper-form">
-                    <TopBar/>
+                    <TopBar history={this.props.history}/>
                     <LeftDrawer/>
                     <h1>Book Details</h1>
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>

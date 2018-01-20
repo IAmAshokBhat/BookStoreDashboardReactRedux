@@ -79,7 +79,7 @@ class Authors extends Component{
             return(
                     <MuiThemeProvider>
                         <div>
-                            <TopBar/>
+                            <TopBar history={this.props.history}/>
                             <LeftDrawer/>
                             <h1>Authors</h1>
                             {this.renderAuthors()}

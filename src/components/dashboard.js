@@ -10,6 +10,7 @@ import BookIcon from 'material-ui/svg-icons/action/book';
 import ListIcon from 'material-ui/svg-icons/av/featured-play-list';
 import PrintIcon from 'material-ui/svg-icons/action/print';
 import PersonIcon from 'material-ui/svg-icons/social/person';
+import { Link } from 'react-router-dom';
 
 export default class Dashboard extends Component{
     constructor(props){
@@ -38,34 +39,42 @@ export default class Dashboard extends Component{
         return(
             <MuiThemeProvider>
             <div>
-                <TopBar/>
+                <TopBar history={this.props.history}/>
                 <LeftDrawer/>
                 <div className="container-fluid">
                 <h1 className="col-md-12 ">Dashboard</h1>
                 <div className="">
                     <div className="col-md-3 no-pd-lft">
+                    <Link to="/book" >
                         <Paper style={style.statsPaperStyle} zDepth={4} className="text-center">
                             <BookIcon style={style.saveIcon}/>
                             <h2>{ `80 Books`}</h2>
                         </Paper>
+                        </Link>
                     </div>
                     <div className="col-md-3 no-pd-lft">
+                    <Link to="/categories" >
                         <Paper style={style.statsPaperStyle} zDepth={4} className="text-center">
                             <ListIcon style={style.saveIcon}/>
                             <h2>{ `10 Categories`}</h2>
                         </Paper>
+                        </Link>
                     </div>
                     <div className="col-md-3 no-pd-lft">
+                    <Link to="/publications" >
                         <Paper style={style.statsPaperStyle} zDepth={4} className="text-center">
                             <PrintIcon style={style.saveIcon}/>
                             <h2>{ `15 Publication`}</h2>
                         </Paper>
+                        </Link>
                     </div>
                     <div className="col-md-3 no-pd-lft">
+                    <Link to="/authors" >
                         <Paper style={style.statsPaperStyle} zDepth={4} className="text-center">
                             <PersonIcon style={style.saveIcon}/>
                             <h2>{ `20 authors`}</h2>
                         </Paper>
+                        </Link>
                     </div>
                 </div>
                

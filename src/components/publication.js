@@ -81,7 +81,7 @@ class Publications extends Component{
         return(
             <MuiThemeProvider>
                 <div>
-                    <TopBar/>
+                    <TopBar history={this.props.history}/>
                     <LeftDrawer/>
                     <h1>Publications</h1>
                     {this.renderPublications()}

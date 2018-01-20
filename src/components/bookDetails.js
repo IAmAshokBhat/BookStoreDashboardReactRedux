@@ -206,7 +206,7 @@ class BookDetails extends Component{
             return(
                 <MuiThemeProvider>
                 <div className="wrapper-form">
-                    <TopBar/>
+                    <TopBar history={this.props.history}/>
                     <LeftDrawer/>
                     
                     <Paper className="col-md-6 col-md-offset-3" style={style.bookEntryStyle} zDepth={4}>

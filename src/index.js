@@ -19,8 +19,9 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>      
-        <Route path="/dashboard" component={Dashboard}/>
-        <Route path="/book/:id" component={BookDetails}/>
+        <Route path="/dashboard" component={Dashboard}/>      
+        <Route path="/book/:id" component={BookDetails}/>  
+        <Route path="/book" component={App}/>       
           <Route path="/publications" component={Publications}/>
           <Route path="/categories" component={Categories}/>
           <Route path="/authors" component={Authors}/>

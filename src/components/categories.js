@@ -75,7 +75,7 @@ class Categories extends Component{
 
             <MuiThemeProvider>
             <div>
-                <TopBar/>
+                <TopBar history={this.props.history}/>
                 <LeftDrawer/>
                 <h1>Categories</h1>
                 {this.renderCategories()}
